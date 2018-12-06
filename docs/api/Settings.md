@@ -1,6 +1,6 @@
 ---
 title: Settings
-order: 301
+order: 401
 section: API
 ---
 
@@ -74,12 +74,12 @@ Store a value of a Sketch setting for a given key.
 var setting = Settings.layerSettingForKey(layer, 'my-key')
 ```
 
-Return the value of a setting for a given key on a specific layer.
+Return the value of a setting for a given key on a specific [Layer](#layer) or [DataOverride](#dataoverride) or [Override](#override).
 
-| Parameters                                                    |                                         |
-| ------------------------------------------------------------- | --------------------------------------- |
-| layer<span class="arg-type">[Layer](#layer) - required</span> | The layer on which a setting is stored. |
-| key<span class="arg-type">string - required</span>            | The setting to look up.                 |
+| Parameters                                                                                                            |                                         |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| layer<span class="arg-type">[Layer](#layer) / [DataOverride](#dataoverride) / [Override](#override) - required</span> | The layer on which a setting is stored. |
+| key<span class="arg-type">string - required</span>                                                                    | The setting to look up.                 |
 
 ### Returns
 
@@ -91,18 +91,18 @@ The setting that was stored for the given key. `undefined` if there was nothing.
 Settings.setLayerSettingForKey(layer, 'my-key', 0.1)
 ```
 
-Store a value of a setting for a given key on a specific layer.
+Store a value of a setting for a given key on a specific [Layer](#layer) or [DataOverride](#dataoverride) or [Override](#override).
 
-| Parameters                                                    |                                        |
-| ------------------------------------------------------------- | -------------------------------------- |
-| layer<span class="arg-type">[Layer](#layer) - required</span> | The layer on which the setting is set. |
-| key<span class="arg-type">string - required</span>            | The setting to set.                    |
-| value<span class="arg-type">any - required</span>             | The value to set it to.                |
+| Parameters                                                                                                            |                                        |
+| --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| layer<span class="arg-type">[Layer](#layer) / [DataOverride](#dataoverride) / [Override](#override) - required</span> | The layer on which the setting is set. |
+| key<span class="arg-type">string - required</span>                                                                    | The setting to set.                    |
+| value<span class="arg-type">any - required</span>                                                                     | The value to set it to.                |
 
 ## Get a Document setting
 
 ```js
-var setting = Settings.layerSettingForKey(document, 'my-key')
+var setting = Settings.documentSettingForKey(document, 'my-key')
 ```
 
 Return the value of a setting for a given key on a specific document.
@@ -116,7 +116,7 @@ Return the value of a setting for a given key on a specific document.
 
 The setting that was stored for the given key. `undefined` if there was nothing.
 
-## Set a Layer setting
+## Set a Document setting
 
 ```js
 Settings.setDocumentSettingForKey(document, 'my-key', 0.1)
@@ -129,3 +129,32 @@ Store a value of a setting for a given key on a specific document.
 | document<span class="arg-type">[Document](#document) - required</span> | The document on which the setting is set. |
 | key<span class="arg-type">string - required</span>                     | The setting to set.                       |
 | value<span class="arg-type">any - required</span>                      | The value to set it to.                   |
+
+## Get a session variable
+
+```js
+var myVar = Settings.sessionVariable('myVar')
+```
+
+Return the value of a variable which is persisted when the plugin finishes to run but is _not_ persisted when Sketch closes. It is useful when you want to keep a value between plugin's runs.
+
+| Parameters                                         |                          |
+| -------------------------------------------------- | ------------------------ |
+| key<span class="arg-type">string - required</span> | The variable to look up. |
+
+### Returns
+
+The setting that was stored for the given key. `undefined` if there was nothing.
+
+## Set a plugin setting
+
+```js
+Settings.setSessionVariable('myVar', 0.1)
+```
+
+Store a value of a variable which is persisted when the plugin finishes to run but is _not_ persisted when Sketch closes. It is useful when you want to keep a value between plugin's runs.
+
+| Parameters                                         |                         |
+| -------------------------------------------------- | ----------------------- |
+| key<span class="arg-type">string - required</span> | The variable to set.    |
+| value<span class="arg-type">any - required</span>  | The value to set it to. |

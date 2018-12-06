@@ -1,7 +1,7 @@
 ---
 title: Rectangle
-order: 401
-section: Utils
+order: 211
+section: models
 ---
 
 ```javascript
@@ -23,7 +23,7 @@ A utility class to represent a rectangle. Contains some methods to make interact
 | width<span class="arg-type">number</span>         | The width of the rectangle.                                                                         |
 | height<span class="arg-type">number</span>        | The height of the rectangle.                                                                        |
 
-## Offset the rectangle
+## Offset the Rectangle
 
 ```javascript
 var newRect = rect.offset(x, y)
@@ -35,17 +35,47 @@ Adjust the rectangle by offsetting it.
 
 Return this rectangle (useful if you want to chain the calls).
 
-## Scale the rectangle
+## Scale the Rectangle
 
 ```javascript
 var newRect = rect.scale(scaleWidth, scaleHeight)
 ```
 
-Adjust the rectangle by scaling it. The `scaleHeight` argument can be ommited to apply the same factor on both the width and the height.
+Adjust the rectangle by scaling it. The `scaleHeight` argument can be omitted to apply the same factor on both the width and the height.
 
 ### Returns
 
 Return this rectangle (useful if you want to chain the calls).
+
+## Change the coordinates basis
+
+```javascript
+var newRect = rect.changeBasis({
+  from: layerA,
+  to: layerB,
+})
+
+var parentRect = rect.changeBasis({
+  from: layerA,
+  to: layerA.parent,
+})
+
+var pageRect = rect.changeBasis({
+  from: layerA,
+  // leaving out `to` means changing the
+  // basis to the Page's basis
+})
+```
+
+Each layer defines its own system of coordinates (with its origin at the top left of the layer). You can change that [basis](<https://en.wikipedia.org/wiki/Basis_(linear_algebra)>) from one layer to the other with `changeBasis`.
+
+| Parameters                                               |                                                                   |
+| -------------------------------------------------------- | ----------------------------------------------------------------- |
+| change<span class="arg-type">object - required</span>    |                                                                   |
+| change.from<span class="arg-type">[Layer](#layer)</span> | The layer in which the rectangle's coordinates are expressed.     |
+| change.to<span class="arg-type">[Layer](#layer)</span>   | The layer in which the rectangle's coordinates will be expressed. |
+
+Both `from` and `to` can be omitted (but not at the same time) to change the basis from/to the Page coordinates.
 
 ## Get a `CGRect`
 

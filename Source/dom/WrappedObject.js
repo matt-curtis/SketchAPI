@@ -4,9 +4,13 @@ export const DefinedPropertiesKey = '_DefinedPropertiesKey'
  * Base class for all objects that
  * wrap Sketch classes.
  */
+
 export class WrappedObject {
   constructor(options) {
-    this._object = options.sketchObject
+    Object.defineProperty(this, '_object', {
+      enumerable: false,
+      value: options.sketchObject,
+    })
 
     Object.defineProperty(this, 'type', {
       enumerable: true,
@@ -27,7 +31,8 @@ export class WrappedObject {
           propertyList[a].depends === b
         ) {
           return 1
-        } else if (
+        }
+        if (
           propertyList[b] &&
           propertyList[b].depends &&
           propertyList[b].depends === a
@@ -38,7 +43,10 @@ export class WrappedObject {
       })
       .forEach(k => {
         if (!propertyList[k]) {
-          log(`no idea what to do with "${k}" in ${this.type}`)
+          // ignore the properties that starts with _, they are workarounds
+          if (k && k[0] !== '_') {
+            console.warn(`no idea what to do with "${k}" in ${this.type}`)
+          }
           return
         }
 
@@ -55,6 +63,9 @@ export class WrappedObject {
    * @param {Object} object - The Sketch model object to wrap.
    */
   static fromNative(sketchObject) {
+    if (!sketchObject) {
+      return sketchObject
+    }
     return new this({
       sketchObject,
     })
@@ -85,6 +96,10 @@ export class WrappedObject {
     })
 
     return json
+  }
+
+  isImmutable() {
+    return /Immutable/.test(String(this.sketchObject.className()))
   }
 
   /**

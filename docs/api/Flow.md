@@ -1,7 +1,7 @@
 ---
 title: Flow
-order: 212
-section: components
+order: 207
+section: models
 ---
 
 ```javascript
@@ -10,11 +10,11 @@ var Flow = require('sketch/dom').Flow
 
 The prototyping action associated with a layer.
 
-| Properties                                                                    |                                                                                             |
-| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| target<span class="arg-type">[Artboard](#artboard) / `Flow.BackTarget`</span> | The target artboard of the action or `Flow.BackTarget` if the action is a back action       |
-| targetId<span class="arg-type">string / `Flow.BackTarget`</span>              | The ID of target artboard of the action or `Flow.BackTarget` if the action is a back action |
-| animationType<span class="arg-type">[AnimationType](#animationtype)</span>    | The type of the animation.                                                                  |
+| Properties                                                                                     |                                                                                             |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| target<span class="arg-type">[Artboard](#artboard) / [Flow.BackTarget](#flowbacktarget)</span> | The target artboard of the action or `Flow.BackTarget` if the action is a back action       |
+| targetId<span class="arg-type">string / [Flow.BackTarget](#flowbacktarget)</span>              | The ID of target artboard of the action or `Flow.BackTarget` if the action is a back action |
+| animationType<span class="arg-type">[AnimationType](#flowanimationtype)</span>                 | The type of the animation.                                                                  |
 
 ## Create a new prototyping action
 
@@ -24,7 +24,7 @@ layer.flow = {
 }
 ```
 
-You can create a action without specifying an animation type, it will use the default one.
+You can create an action without specifying an animation type, it will use the default one.
 
 ```javascript
 layer.flow = {
@@ -32,7 +32,7 @@ layer.flow = {
 }
 ```
 
-You can create a action by using the ID of an Artboard instead of the artboard.
+You can create an action by using the ID of an Artboard instead of the artboard.
 
 ```javascript
 layer.flow = {
@@ -41,7 +41,7 @@ layer.flow = {
 }
 ```
 
-You can also specify the [animation type](#animationtype).
+You can also specify the [animation type](#flowanimationtype).
 
 ```javascript
 layer.flow = {

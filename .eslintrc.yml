@@ -35,7 +35,8 @@ globals:
   AppController: false
   MSImageData: false
   NSImage: false
-  MSModalInputSheet: false
+  NSTextField: false
+  NSSlider: false
   MSStyleFill: false
   MSStyleBorder: false
   MSColor: false
@@ -46,14 +47,74 @@ globals:
   MSSymbolMaster: false
   MSSymbolInstance: false
   MSAvailableOverride: false
+  MSAssetLibrary: false
+  MSDocument: false
+  NSURL: false
+  NSSaveToOperation: false
   NSData: false
   NSDataBase64DecodingIgnoreUnknownCharacters: false
-  MSDocument: false
   __command: false
   MSFlowConnection: false
   MSHotspotLayer: false
   NSPredicate: false
   MSRectangleShape: false
+  MSSymbolMasterReference: false
+  MSShareableObjectReference: false
+  MSSharedStyleReference: false
+  NSString: false
+  MSForeignSymbolProvider: false
+  MSForeignObjectCollector: false
+  MSStyleShadow: false
+  MSStyleInnerShadow: false
+  MSGradientStop: false
+  MSGradient: false
+  CGPointMake: false
+  MSSharedLayerReference: false
+  MSSharedTextReference: false
+  MSUserAssetLibrary: false
+  MSRemoteAssetLibrary: false
+  NSSaveAsOperation: false
+  NSSaveOperation: false
+  coscript: false
+  __mocha__: false
+  NSOpenPanel: false
+  NSOKButton: false
+  NSNull: false
+  MSSharedLayerStyleProvider: false
+  MSSharedTextStyleProvider: false
+  MSForeignObjectProvider: false
+  MSSharedStyle: false
+  MSStyle: false
+  MSDataOverride: false
+  MSImmutableArtboardGroup: false
+  MSImmutableLayerGroup: false
+  MSImmutableHotspotLayer: false
+  MSImmutableBitmapLayer: false
+  MSImmutableLayer: false
+  MSImmutablePage: false
+  MSImmutableShapeGroup: false
+  MSStyledLayer: false
+  MSImmutableStyledLayer: false
+  MSImmutableSymbolInstance: false
+  MSImmutableSymbolMaster: false
+  MSImmutableTextLayer: false
+  MSImmutableDocumentData: false
+  MSShapePathLayer: false
+  MSOvalShape: false
+  MSPolygonShape: false
+  MSStarShape: false
+  MSTriangleShape: false
+  MSImmutableShapePathLayer: false
+  MSImmutableOvalShape: false
+  MSImmutablePolygonShape: false
+  MSImmutableStarShape: false
+  MSImmutableTriangleShape: false
+  MSImmutableRectangleShape: false
+  MSSliceLayer: false
+  MSImmutableSliceLayer: false
+  MSExportFormat: false
+  NSThread: false
+  MSTheme: false
 
 rules:
   ###########
@@ -61,6 +122,14 @@ rules:
   ###########
   # IMPORT
   import/prefer-default-export: off
+  import/no-extraneous-dependencies: off
+  import/extensions: off
+  import/no-unresolved:
+    - error
+    - commonjs: true
+      caseSensitive: true
+      ignore:
+        - '^sketch(\/|$)'
   # TYPESCRIPT
   typescript/interface-name-prefix:
     - error
@@ -109,3 +178,11 @@ rules:
 
 parserOptions:
   sourceType: module
+
+settings:
+  import/resolver:
+    node:
+      extensions:
+        - .ts
+        - .js
+        - .json

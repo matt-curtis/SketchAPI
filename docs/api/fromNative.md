@@ -1,7 +1,7 @@
 ---
 title: fromNative
-order: 403
-section: Utils
+order: 212
+section: models
 ---
 
 ```javascript

@@ -1,53 +1,36 @@
-import { exportObject } from './export'
+import { AnimationType, BackTarget } from './models/Flow'
+import './models/DataOverride'
 
-import { Rectangle } from './Rectangle'
-import { Style } from './Style'
+export { exportObject as export } from './export'
 
-import { Document } from './components/Document'
-import { Group } from './components/Group'
-import { Text } from './components/Text'
-import { Image } from './components/Image'
-import { Shape } from './components/Shape'
-import { Artboard } from './components/Artboard'
-import { Page } from './components/Page'
-import { SymbolMaster } from './components/SymbolMaster'
-import { SymbolInstance } from './components/SymbolInstance'
-import { HotSpot } from './components/HotSpot'
+export { Document, getDocuments, getSelectedDocument } from './models/Document'
+export { Library, getLibraries } from './models/Library'
+export { SharedStyle } from './models/SharedStyle'
+export { Rectangle } from './models/Rectangle'
 
-import { AnimationType, BackTarget } from './components/Flow'
-import { Types } from './enums'
-import { wrapObject } from './wrapNativeObject'
+export { Style } from './style/Style'
 
-const api = {}
+export { Group } from './layers/Group'
+export { Text } from './layers/Text'
+export { Image } from './layers/Image'
+export { Shape } from './layers/Shape'
+export { ShapePath } from './layers/ShapePath'
+export { Artboard } from './layers/Artboard'
+export { Page } from './layers/Page'
+export { SymbolMaster } from './layers/SymbolMaster'
+export { SymbolInstance } from './layers/SymbolInstance'
+export { HotSpot } from './layers/HotSpot'
+export { Slice } from './layers/Slice'
 
-api.Document = Document
-api.Group = Group
-api.Text = Text
-api.Image = Image
-api.Shape = Shape
-api.Artboard = Artboard
-api.Page = Page
-api.SymbolMaster = SymbolMaster
-api.SymbolInstance = SymbolInstance
-api.HotSpot = HotSpot
-api.Flow = {
+export { Types } from './enums'
+export { wrapObject as fromNative } from './wrapNativeObject'
+
+export const Flow = {
   AnimationType,
   BackTarget,
 }
 
-api.export = exportObject
-
-api.Style = Style
-api.Rectangle = Rectangle
-api.Types = Types
-api.fromNative = wrapObject
-
-api.getDocuments = Document.getDocuments
-api.getSelectedDocument = Document.getSelectedDocument
-
-api.version = {
+export const version = {
   sketch: MSApplicationMetadata.metadata().appVersion,
   api: process.env.API_VERSION,
 }
-
-module.exports = api

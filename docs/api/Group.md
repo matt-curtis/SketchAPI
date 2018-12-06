@@ -1,7 +1,7 @@
 ---
 title: Group
-order: 203
-section: components
+order: 302
+section: layers
 ---
 
 ```javascript
@@ -10,16 +10,21 @@ var Group = require('sketch/dom').Group
 
 A group of layers. It is also an instance of [Layer](#layer) so all the methods defined there are available.
 
-| Properties                                                 |                                                                                                 |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| id<span class="arg-type">string</span>                     | The unique ID of the Group.                                                                     |
-| name<span class="arg-type">string</span>                   | The name of the Group                                                                           |
-| parent<span class="arg-type">[Group](#group)</span>        | The group the Group is in.                                                                      |
-| layers<span class="arg-type">[Layer](#layer)[]</span>      | The layers that this component groups together.                                                 |
-| frame<span class="arg-type">[Rectangle](#rectangle)</span> | The frame of the Group. This is given in coordinates that are local to the parent of the layer. |
-| flow<span class="arg-type">[Flow](#flow)</span>            | The prototyping action associated with the Group.                                               |
+| Properties                                                                 |                                                                                                 |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| id<span class="arg-type">string</span>                                     | The unique ID of the Group.                                                                     |
+| name<span class="arg-type">string</span>                                   | The name of the Group                                                                           |
+| parent<span class="arg-type">[Group](#group)</span>                        | The group the Group is in.                                                                      |
+| locked<span class="arg-type">boolean</span>                                | If the group is locked.                                                                         |
+| hidden<span class="arg-type">boolean</span>                                | If the group is hidden.                                                                         |
+| frame<span class="arg-type">[Rectangle](#rectangle)</span>                 | The frame of the Group. This is given in coordinates that are local to the parent of the layer. |
+| flow<span class="arg-type">[Flow](#flow)</span>                            | The prototyping action associated with the Group.                                               |
+| exportFormats<span class="arg-type">[ExportFormat](#exportformat)[]</span> | The export formats of the Group.                                                                |
+| style<span class="arg-type">[Style](#style)</span>                         | The style of the Group.                                                                         |
+| sharedStyleId<span class="arg-type">string / null</span>                   | The ID of the [SharedStyle](#sharedstyle) this Group is linked to if any.                       |
+| layers<span class="arg-type">[Layer](#layer)[]</span>                      | The layers that this component groups together.                                                 |
 
-## Create a new group
+## Create a new Group
 
 ```javascript
 new Group()
@@ -36,24 +41,6 @@ var group = new Group({
   ],
 })
 ```
-
-## pageRectToLocalRect
-
-```javascript
-var rectDefinedInGroupCoordinates = group.pageRectToLocalRect(
-  rectDefinedInPageCoordinates
-)
-```
-
-Convert a rectangle in page coordinates to one relative to this group's coordinates.
-
-| Parameters                                                           |                          |
-| -------------------------------------------------------------------- | ------------------------ |
-| rect<span class="arg-type">[Rectangle](#rectangle) - required</span> | The rectangle to convert |
-
-### Returns
-
-A [Rectangle](#rectangle) in local coordinates.
 
 ## Adjust to fit its children
 
